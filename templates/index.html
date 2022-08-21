@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+templates/index.html{% block main %}
+<div id="outerdiv">
+    <div>
+        {% for row in rows %}
+
+        <!-- Add the headers (Today, Tomorrow, and Long Term, if they are being used by the tasks) -->
+        {% if row["change"] == 1 %}
+        <div class="listheader">Today</div>
+        {% elif row["change"] == 2 %}
+        <div class="listheader">Tomorrow</div>
+        {% elif row["change"] == 3%}
+        <div class="listheader">Long Term</div>
+        {% endif %}
+
+        <div class="listitem" >
+
+                <!-- Add the appropriate priority css color square -->
+                {% if row["priority"] == 1 %}
+                <input type="checkbox" id="{{ row["todoid"] }}" class="todochecks priority1">
+                {% elif row["priority"] == 2%}
+                <input type="checkbox" id="{{ row["todoid"] }}" class="todochecks priority2">
+                {% else %}
+                <input type="checkbox" id="{{ row["todoid"] }}" class="todochecks priority3">
+                {% endif %}
+
+                <!-- Add the task, the start timer button, and a placeholder for the text of the timer -->
+                <span> {{ row["task"] }}</span>
+                <button class="button-1" type="submit">Start Timer</button>
+                <span class="timertext" id="text{{ row["todoid"] }}"></span>
+                <p></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+
+    <!-- Add option for selecting category -->
+    <container class="container-fluid py-5 text-center">
+        <form action="/create" method="post">
+            <container>
+                <select class="select1" name="category" class="select">
+                    <option disabled selected>Category</option>
+                    <option> Today </option>
+                    <option> Tomorrow </option>
+                    <option> Long Term </option>
+                </select>
+            </container>
+
+            <!-- Add option for selecting priority -->
+            <select class="select2" name="priority">
+                <option disabled selected>Priority</option>
+                <option> 1 </option>
+                <option> 2 </option>
+                <option> 3 </option>
+            </select>
+
+            <!-- Add option to input task and the submit button -->
+            <input class="taskbar" autocomplete="off" autofocus id="task" name="task" placeholder="Task" type="text">
+            <button class="button-2" type="submit">Add Task</button>
+        </form>
+    </container>
+</div>
+
+<script>
+
+// Listen for when a checkbox is clicked, send that message to the delete route and then reload the page once we get a response from that route
+let todocheckmarks = document.querySelectorAll('.todochecks');
+for (let i = 0; i < todocheckmarks.length; i++){
+    todocheckmarks[i].addEventListener('input', async function(){
+    let test = await fetch('/delete?q=' + todocheckmarks[i].id);
+    let response = await test.json();
+    if (response.message == "okay")
+        {
+            location.reload();
+        }
+    });
+};
+
+// Get arrays of all of the submit buttons and placeholder timer text, as well as a dictionary to hold the set interval id
+let todotimers = document.querySelectorAll('.button-1');
+let todotimertext = document.querySelectorAll('.timertext');
+var intervaliddict = {};
+
+// Add an event listener fore each of the timers on click
+for (let i = 0; i < todotimers.length; i++) {
+    todotimers[i].addEventListener('click', function(){
+
+    // Start the timer, set seconds and minutes to zero and change the text to stop timer
+    if (todotimers[i].innerHTML == "Start Timer") {
+        let seconds = 0;
+        let minutes = 0;
+        todotimers[i].innerHTML = "Stop Timer"
+
+        // Set an interval function that will update the inner html with minutes and seconds, every second
+        intervaliddict[i] = setInterval(function () {document.querySelector('#text' + todocheckmarks[i].id).innerHTML = minutes + " minutes " + seconds + " seconds";
+            if (seconds == 60) {
+                minutes += 1;
+                seconds = 0;
+            }
+            seconds++;}, 1000);
+    }
+
+    // If the text is "stop timer", reset the interval and change the text to start timer
+    else {
+        todotimers[i].innerHTML = "Start Timer";
+        clearInterval(intervaliddict[i]);
+        document.querySelector('#text' + todocheckmarks[i].id).innerHTML = '';
+    }
+    });
+}
+</script>
+{% endblock %}
