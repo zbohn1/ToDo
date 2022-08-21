@@ -1,0 +1,147 @@
+.listheader {
+  margin-bottom: 13.3px;
+  font-size: 25px;
+}
+
+.priority1 {
+  height: 15px;
+  width: 15px;
+  border: 2px solid #d43e39;
+  border-radius: 4px;
+  outline: none;
+  transition-duration: 0.3s;
+  background-color: #d43e39;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+}
+
+.priority2 {
+  height: 15px;
+  width: 15px;
+  border: 2px solid #f66342;
+  border-radius: 4px;
+  outline: none;
+  transition-duration: 0.3s;
+  background-color: #f66342;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+}
+
+.priority3 {
+  height: 15px;
+  width: 15px;
+  border: 2px solid #d042f6;
+  border-radius: 4px;
+  outline: none;
+  transition-duration: 0.3s;
+  background-color: #d042f6;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+}
+
+.priority1:checked {
+  background-color: #d43e39;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.priority2:checked {
+  background-color: #f66342;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.priority3:checked {
+  background-color: #d042f6;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.select1 {
+  margin: auto;
+  width: 150px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #dce5e8;
+  text-indent: 40px;
+  color: black;
+}
+
+.select2 {
+  margin: auto;
+  width: 150px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #dce5e8;
+  text-indent: 50px;
+  color: black;
+}
+
+.listitem {
+  margin-bottom: 12px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: grey;
+}
+
+.button-1 {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ea4c89;
+  cursor: pointer;
+  color: #ea4c89;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.button-1:hover,
+.button-1:focus {
+  background-color: #ea4c89;
+  color: white;
+}
+
+.bg-custom {
+  background-color: #ea4c89;
+}
+
+.white {
+  color: white;
+}
+
+.taskbar {
+  width: 300px;
+}
+
+.button-2 {
+  background-color: #ea4c89;
+  border-radius: 4px;
+  border: 1px solid black;
+  cursor: pointer;
+  color: white;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  width: 150px;
+  height: 37.5px;
+}
