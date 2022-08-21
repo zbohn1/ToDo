@@ -1,0 +1,20 @@
+{% extends "layout.html" %} {% block title %} Completed {% endblock %} {% block
+main %}
+
+<!-- Create a table with the completed tasks -->
+<table class="table tablestriped">
+  <thead>
+    <tr>
+      <th>Completed Task</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row["task"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
